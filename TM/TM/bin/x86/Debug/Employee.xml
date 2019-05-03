@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<User xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>asd</name>
+  <id>sda</id>
+  <pass>asd</pass>
+  <Mobile_number>asd</Mobile_number>
+  <Email_address>sad</Email_address>
+</User><?xml version="1.0"?>
+<ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <User>
+    <name>sad</name>
+    <id>asd</id>
+    <pass>asd</pass>
+    <Mobile_number>asd</Mobile_number>
+    <Email_address>asd</Email_address>
+  </User>
+</ArrayOfUser><?xml version="1.0"?>
+<ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <User>
+    <name>qwe</name>
+    <id>asd</id>
+    <pass>as</pass>
+    <Mobile_number>asd</Mobile_number>
+    <Email_address>zas</Email_address>
+  </User>
+</ArrayOfUser>

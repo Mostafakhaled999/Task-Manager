@@ -1,0 +1,11 @@
+C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\bin\x86\Debug\TM.exe.config
+C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\bin\x86\Debug\TM.exe
+C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\bin\x86\Debug\TM.pdb
+C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\x86\Debug\TM.csprojAssemblyReference.cache
+C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\x86\Debug\TM.Signin.resources
+C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\x86\Debug\TM.Properties.Resources.resources
+C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\x86\Debug\TM.Register.resources
+C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\x86\Debug\TM.csproj.GenerateResource.cache
+C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\x86\Debug\TM.csproj.CoreCompileInputs.cache
+C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\x86\Debug\TM.exe
+C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\x86\Debug\TM.pdb
