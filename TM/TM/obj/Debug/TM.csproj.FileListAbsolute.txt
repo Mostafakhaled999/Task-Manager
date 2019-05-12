@@ -4,9 +4,14 @@ C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\bin\Debug\TM.pdb
 C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\bin\Debug\Bunifu_UI_v1.5.3.dll
 C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\bin\Debug\Bunifu.Core.dll
 C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.csprojAssemblyReference.cache
+<<<<<<< HEAD
 C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.Signin.resources
 C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.Properties.Resources.resources
 C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.Register.resources
+=======
+C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.Form1.resources
+C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.Properties.Resources.resources
+>>>>>>> master
 C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.csproj.GenerateResource.cache
 C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.csproj.CoreCompileInputs.cache
 C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.csproj.CopyComplete
