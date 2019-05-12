@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Xml.Serialization;
 using System.Xml;
 namespace TM
 {
-    abstract class Employee
+   public abstract class Employee
     {
-        protected int id;
+        public int id;
        public static int noOfemp = 0;
-        protected string name, password;
+        public string name, password;
         
         public Employee(int i,string n,string p)
         {
@@ -33,7 +34,7 @@ namespace TM
         public abstract bool download();
 
     }
-    class User : Employee
+  public  class User : Employee
     {
         
        public User() : base()
@@ -147,7 +148,7 @@ namespace TM
     }
 
 
-    class Admin : Employee
+ public   class Admin : Employee
     {
         public Admin() : base()
         {
@@ -269,6 +270,32 @@ namespace TM
                
                 return true;
             }
+        }
+        public void createProject(string n, string d)
+        {
+            List<Project> projects = new List<Project>();
+            Project pro = new Project(n, d, name);
+           
+            if (!File.Exists("Projects.xml"))
+            {
+                projects.Add(pro);
+                FileStream fs = new FileStream("Projects.xml", FileMode.Append);
+                XmlSerializer xs = new XmlSerializer(projects.GetType());
+                xs.Serialize(fs, projects);
+                fs.Close();
+            }
+            else
+            {
+                FileStream fs = new FileStream("Projects.xml", FileMode.Open);
+                XmlSerializer xs = new XmlSerializer(projects.GetType());
+                projects = (List<Project>)xs.Deserialize(fs);
+                projects.Add(pro);
+                fs.Close();
+                fs = new FileStream("Projects.xml", FileMode.Open);
+                xs.Serialize(fs, projects);
+                fs.Close();
+            }
+           
         }
     }
 }

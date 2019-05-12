@@ -11,3 +11,4 @@ C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.csproj.CoreCompileInp
 C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.csproj.CopyComplete
 C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.exe
 C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.pdb
+C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.test.resources

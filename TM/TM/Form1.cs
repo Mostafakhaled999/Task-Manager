@@ -7,19 +7,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Xml.Serialization;
+using System.Xml;
+using System.IO;
 namespace TM
 {
      
     public partial class Form1 : Form
     {
-        
+        Admin admin;
+         User user;
+        List<Project> pros= new List<Project>();
         public Form1()
         {
             InitializeComponent();
-           
-            
+            try
+            {
+                FileStream fs = new FileStream("Projects.xml", FileMode.Open);
+                XmlSerializer xs = new XmlSerializer(pros.GetType());
+                pros = (List<Project>)xs.Deserialize(fs);
+                fs.Close();
+                for (int i = 0; i < pros.Count; i++)
+                {
+                    dataGridView1.Rows.Add(pros[i].name, pros[i].owner);
 
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
 
         }
 
@@ -27,7 +45,7 @@ namespace TM
         {
             if (radioButton3.Checked)
             {
-                Admin admin = new Admin(int.Parse(textBox1.Text), textBox2.Text, textBox3.Text);
+                 admin = new Admin(int.Parse(textBox1.Text), textBox2.Text, textBox3.Text);
                 if (admin.register())
                 {
                     Employee.noOfemp++;
@@ -40,7 +58,7 @@ namespace TM
             }
             else if(radioButton4.Checked)
             {
-                User user = new User(int.Parse(textBox1.Text), textBox2.Text, textBox3.Text);
+                 user = new User(int.Parse(textBox1.Text), textBox2.Text, textBox3.Text);
                 if (user.register())
                 {
                     Employee.noOfemp++;
@@ -56,7 +74,7 @@ namespace TM
         {
             if (radioButton1.Checked)
             {
-                Admin admin = new Admin();
+                 admin = new Admin();
                 if (admin.login(int.Parse(textBox4.Text), textBox6.Text))
                 {
                     MessageBox.Show("Login successfuly :D");
@@ -68,7 +86,8 @@ namespace TM
             }
             else if(radioButton2.Checked)
             {
-                User user = new User();
+                 user = new User();
+                
                 if (user.login(int.Parse(textBox4.Text), textBox6.Text))
                 {
                     MessageBox.Show("Login successfuly :D");
@@ -78,12 +97,33 @@ namespace TM
                     MessageBox.Show("<<<Login Faild>>>");
                 }
             }
-
+            panel1.Visible = true;
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            
+           admin.createProject(textBox5.Text, textBox7.Text);
+            textBox5.Clear();
+            textBox7.Clear();
+            nProjectpanel.Visible = false;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+           // panel1.Visible = false;
+            nProjectpanel.Visible = true;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

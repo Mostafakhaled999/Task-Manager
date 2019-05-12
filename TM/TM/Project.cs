@@ -3,50 +3,66 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+using System.Xml;
 
 namespace TM
 {
-    class Project
+    public class Project
     {
+      
         public string name;
+        public string owner;
         public string descri;
-        public int id;
         public int noOfemp;
-        List<Employee> emps;
-        List<Task> tasks;
-        
+        public List<Employee> emps;
+        public List<Task> tasks;
+
         public Project()
         {
             name = null;
             descri = null;
-            id = 0;
             noOfemp = 0;
-            emps= null;
-            tasks = null;
+            emps = new List<Employee>();
+            tasks = new List<Task>();
         }
-        public Project(string n,string d,int i,List<Employee>employees,List<Task>task)
+        public Project(string n, string d, string ownername)
         {
             name = n;
             descri = d;
-            id = i;
-            noOfemp = 0;
-            emps = employees;
-            tasks = task;
+            owner = ownername;
+            emps = new List<Employee>();
+            tasks = new List<Task>();
+        }
+        public void addemployee(Employee em)
+        {
+            emps.Add(em);
+        }
+        public void addtask(Task tsk)
+        {
+            tasks.Add(tsk);
         }
     }
-    class Task
+   public class Task
     {
         public string name;
         public string comment;
+        public string duration;
+        public Employee emp;
+        public bool status;
         public Task()
         {
             name = null;
             comment = null;
+            duration = null;
+            status = true;
         }
-        public Task(string n,string c)
+        public Task(string n,string c,string d)
         {
             name = n;
             comment = c;
+            duration = d;
+            status = true;
         }
     }
 }
