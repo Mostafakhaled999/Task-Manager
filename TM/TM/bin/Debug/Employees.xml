@@ -12,4 +12,16 @@
       <Password>koko</Password>
     </user>
   </Users>
+  <Admins>
+    <admin>
+      <ID>0</ID>
+      <Name>mostafa</Name>
+      <Password>123456789</Password>
+    </admin>
+    <admin>
+      <ID>1</ID>
+      <Name>nour</Name>
+      <Password>123</Password>
+    </admin>
+  </Admins>
 </Emloyees>

@@ -17,37 +17,73 @@ namespace TM
         public Form1()
         {
             InitializeComponent();
+           
             
-            
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            User user = new User(int.Parse(textBox1.Text),textBox2.Text,textBox3.Text);
-            
-            if (user.register())
+            if (radioButton3.Checked)
             {
-                Employee.noOfemp++;
-                MessageBox.Show("User added successfuly");
-                textBox1.Clear();
-                textBox2.Clear();
-                textBox3.Clear();
-            }
-           
+                Admin admin = new Admin(int.Parse(textBox1.Text), textBox2.Text, textBox3.Text);
+                if (admin.register())
+                {
+                    Employee.noOfemp++;
+                    MessageBox.Show("User added successfuly");
+                    textBox1.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                }
 
+            }
+            else if(radioButton4.Checked)
+            {
+                User user = new User(int.Parse(textBox1.Text), textBox2.Text, textBox3.Text);
+                if (user.register())
+                {
+                    Employee.noOfemp++;
+                    MessageBox.Show("User added successfuly");
+                    textBox1.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                }
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            User user = new User();
-            if (user.login(int.Parse(textBox4.Text),textBox6.Text))
+            if (radioButton1.Checked)
             {
-                MessageBox.Show("Login successfuly :D");
+                Admin admin = new Admin();
+                if (admin.login(int.Parse(textBox4.Text), textBox6.Text))
+                {
+                    MessageBox.Show("Login successfuly :D");
+                }
+                else
+                {
+                    MessageBox.Show("<<<Login Faild>>>");
+                }
             }
-            else
+            else if(radioButton2.Checked)
             {
-                MessageBox.Show("<<<Login Faild>>>");
+                User user = new User();
+                if (user.login(int.Parse(textBox4.Text), textBox6.Text))
+                {
+                    MessageBox.Show("Login successfuly :D");
+                }
+                else
+                {
+                    MessageBox.Show("<<<Login Faild>>>");
+                }
             }
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }
