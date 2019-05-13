@@ -297,5 +297,30 @@ namespace TM
             }
            
         }
+        public void createtask(string n,string d,string c,Employee employee)
+        {
+            List<Task> tasks = new List<Task>();
+            Task tsk = new Task(n, d, name);
+
+            if (!File.Exists("Projects.xml"))
+            {
+                tasks.Add(tsk);
+                FileStream fs = new FileStream("Tasks.xml", FileMode.Append);
+                XmlSerializer xs = new XmlSerializer(tasks.GetType());
+                xs.Serialize(fs, tasks);
+                fs.Close();
+            }
+            else
+            {
+                FileStream fs = new FileStream("Tasks.xml", FileMode.Open);
+                XmlSerializer xs = new XmlSerializer(tasks.GetType());
+                tasks = (List<Task>)xs.Deserialize(fs);
+                tasks.Add(tsk);
+                fs.Close();
+                fs = new FileStream("Tasks.xml", FileMode.Open);
+                xs.Serialize(fs, tasks);
+                fs.Close();
+            }
+        }
     }
 }

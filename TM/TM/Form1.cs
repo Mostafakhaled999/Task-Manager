@@ -17,12 +17,13 @@ namespace TM
     {
         Admin admin;
          User user;
-        List<Project> pros= new List<Project>();
+        List<Project> pros;
         public Form1()
         {
             InitializeComponent();
             try
             {
+                pros = new List<Project>();
                 FileStream fs = new FileStream("Projects.xml", FileMode.Open);
                 XmlSerializer xs = new XmlSerializer(pros.GetType());
                 pros = (List<Project>)xs.Deserialize(fs);
@@ -113,6 +114,24 @@ namespace TM
             textBox5.Clear();
             textBox7.Clear();
             nProjectpanel.Visible = false;
+            try
+            {
+                pros = new List<Project>();
+                FileStream fs = new FileStream("Projects.xml", FileMode.Open);
+                XmlSerializer xs = new XmlSerializer(pros.GetType());
+                pros = (List<Project>)xs.Deserialize(fs);
+                fs.Close();
+                for (int i = 0; i < pros.Count; i++)
+                {
+                    dataGridView1.Rows.Add(pros[i].name, pros[i].owner);
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -123,7 +142,51 @@ namespace TM
 
         private void button4_Click(object sender, EventArgs e)
         {
+            int rowi = dataGridView1.CurrentRow.Index;
+            label10.Text = pros[rowi].name;
+            textBox8.Text = pros[rowi].descri;
 
+            //loading employers into the datagridview
+            //XmlDocument doc = new XmlDocument();
+            //doc.Load("Employees.xml");
+            //XmlNodeList list = doc.GetElementsByTagName("user");
+            //XmlNodeList list2 = doc.GetElementsByTagName("admin");
+            //for (int a = 0; a < list.Count; a++)
+            //{
+            //    XmlNodeList child = list[a].ChildNodes;               
+            //    dataGridView2.Rows.Add(child[0].InnerText, child[1].InnerText);     
+            //}
+            //for (int i = 0; i < list2.Count; i++)
+            //{
+            //    XmlNodeList child = list2[i].ChildNodes;
+            //    dataGridView2.Rows.Add(child[0].InnerText, child[1].InnerText);
+            //}
+
+
+            panel2.Visible = true;
+            panel1.Visible = false;
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            string name = dataGridView4.CurrentRow.Cells[0].ToString();
+            XmlDocument doc = new XmlDocument();
+            doc.Load("Employees.xml");
+            XmlNodeList list = doc.GetElementsByTagName("user");
+            for (int i = 0; i < list.Count; i++)
+            {
+                XmlNodeList child = list[i].ChildNodes;
+                if (child[0].InnerText.Equals(name))
+                {
+                    
+                }
+            }
+           // admin.createtask()
         }
     }
 }
