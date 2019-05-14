@@ -1,36 +1,9 @@
 <?xml version="1.0"?>
 <ArrayOfProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Project>
-    <name>Files</name>
+    <name>qwe</name>
     <owner>nour</owner>
-    <descri>c# program</descri>
-    <noOfemp>3</noOfemp>
-    <emps>
-      <Employee>
-        <id>55</id>
-        <name>momen</name>
-        <password>123</password>
-        <type>user</type>
-      </Employee>
-      <Employee>
-        <id>50</id>
-        <name>meza</name>
-        <password>123</password>
-        <type>user</type>
-      </Employee>
-      <Employee>
-        <id>23</id>
-        <name>samer</name>
-        <password>123</password>
-        <type>user</type>
-      </Employee>
-    </emps>
-    <tasks />
-  </Project>
-  <Project>
-    <name>OOP</name>
-    <owner>nour</owner>
-    <descri>Java program</descri>
+    <descri>qe</descri>
     <noOfemp>0</noOfemp>
     <emps />
     <tasks />

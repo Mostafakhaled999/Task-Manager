@@ -29,14 +29,14 @@ namespace TM
             {
                 employees = new List<Employee>();
                 employees = Employee.load();
-                pros = new List<Project>();
-                pros = Project.load();
-                tasks = new List<Task>();
-                for (int i = 0; i < pros.Count; i++)
-                {
-                    dataGridView1.Rows.Add(pros[i].name, pros[i].owner);
+                //pros = new List<Project>();
+                //pros = Project.load();
+                //tasks = new List<Task>();
+                //for (int i = 0; i < pros.Count; i++)
+                //{
+                //    dataGridView1.Rows.Add(pros[i].name, pros[i].owner);
 
-                }
+                //}
             }
             catch (Exception)
             {
@@ -272,6 +272,17 @@ namespace TM
         {
             employee.edittask(dataGridView3.CurrentRow.Index, textBox9.Text, textBox10.Text, textBox11.Text, pros[rowi].emps[dataGridView4.CurrentRow.Index]);
             newTask.Visible = false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            employee.deleteproject(dataGridView1.CurrentRow.Index);
+            pros = Project.load();
+            dataGridView1.Rows.Clear();
+            for (int i = 0; i < pros.Count; i++)
+            {
+                dataGridView1.Rows.Add(pros[i].name, pros[i].owner);
+            }
         }
     }
 }
