@@ -1,27 +1,33 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Emloyees>
-  <Users>
-    <user>
-      <ID>1</ID>
-      <Name>mostafa</Name>
-      <Password>khaled</Password>
-    </user>
-    <user>
-      <ID>123</ID>
-      <Name>ahmed</Name>
-      <Password>koko</Password>
-    </user>
-  </Users>
-  <Admins>
-    <admin>
-      <ID>0</ID>
-      <Name>mostafa</Name>
-      <Password>123456789</Password>
-    </admin>
-    <admin>
-      <ID>1</ID>
-      <Name>nour</Name>
-      <Password>123</Password>
-    </admin>
-  </Admins>
-</Emloyees>
+<?xml version="1.0"?>
+<ArrayOfEmployee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Employee>
+    <id>0</id>
+    <name>mostafa</name>
+    <password>123</password>
+    <type>admin</type>
+  </Employee>
+  <Employee>
+    <id>1</id>
+    <name>nour</name>
+    <password>123</password>
+    <type>admin</type>
+  </Employee>
+  <Employee>
+    <id>55</id>
+    <name>momen</name>
+    <password>123</password>
+    <type>user</type>
+  </Employee>
+  <Employee>
+    <id>50</id>
+    <name>meza</name>
+    <password>123</password>
+    <type>user</type>
+  </Employee>
+  <Employee>
+    <id>23</id>
+    <name>samer</name>
+    <password>123</password>
+    <type>user</type>
+  </Employee>
+</ArrayOfEmployee>

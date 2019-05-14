@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.Xml;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace TM
 {
@@ -33,15 +35,44 @@ namespace TM
             owner = ownername;
             emps = new List<Employee>();
             tasks = new List<Task>();
+            noOfemp= 0;
         }
-        public void addemployee(Employee em)
+        public void addemployees(Employee em)
         {
-            emps.Add(em);
+            
+            List<Project> projects = new List<Project>();
+            FileStream fs = new FileStream("Projects.xml", FileMode.Open);
+            XmlSerializer xs = new XmlSerializer(projects.GetType());
+            projects = (List<Project>)xs.Deserialize(fs);
+            projects[Form1.rowi].emps.Add(em);
+            projects[Form1.rowi].noOfemp++;
+            fs.Close();
+            fs = new FileStream("Projects.xml", FileMode.Open);
+            xs.Serialize(fs, projects);
+            fs.Close();
         }
         public void addtask(Task tsk)
         {
-            tasks.Add(tsk);
+            List<Project> projects = new List<Project>();
+            FileStream fs = new FileStream("Projects.xml", FileMode.Open);
+            XmlSerializer xs = new XmlSerializer(projects.GetType());
+            projects = (List<Project>)xs.Deserialize(fs);
+            projects[Form1.rowi].tasks.Add(tsk);
+            fs.Close();
+            fs = new FileStream("Projects.xml", FileMode.Open);
+            xs.Serialize(fs, projects);
+            fs.Close();
         }
+        public static List<Project>load()
+        {
+            List<Project> projects = new List<Project>();
+            FileStream fs = new FileStream("Projects.xml", FileMode.Open);
+            XmlSerializer xs = new XmlSerializer(projects.GetType());
+            projects = (List<Project>)xs.Deserialize(fs);
+            fs.Close();
+            return projects;
+        }
+        
     }
    public class Task
     {
@@ -49,20 +80,22 @@ namespace TM
         public string comment;
         public string duration;
         public Employee emp;
-        public bool status;
+        public string status;
         public Task()
         {
             name = null;
             comment = null;
             duration = null;
-            status = true;
+            status = "Open";
         }
-        public Task(string n,string c,string d)
+        public Task(string n,string c,string d,Employee employee)
         {
             name = n;
             comment = c;
             duration = d;
-            status = true;
+            status = "Open";
+            emp = employee;
         }
+        
     }
 }

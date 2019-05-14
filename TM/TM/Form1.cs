@@ -15,19 +15,23 @@ namespace TM
      
     public partial class Form1 : Form
     {
-        Admin admin;
-         User user;
+        Employee employee;
+        List<Employee> employees;
         List<Project> pros;
+        Project project;
+        Task task;
+        List<Task> tasks ;
+       public static int rowi;
         public Form1()
         {
             InitializeComponent();
             try
             {
+                employees = new List<Employee>();
+                employees = Employee.load();
                 pros = new List<Project>();
-                FileStream fs = new FileStream("Projects.xml", FileMode.Open);
-                XmlSerializer xs = new XmlSerializer(pros.GetType());
-                pros = (List<Project>)xs.Deserialize(fs);
-                fs.Close();
+                pros = Project.load();
+                tasks = new List<Task>();
                 for (int i = 0; i < pros.Count; i++)
                 {
                     dataGridView1.Rows.Add(pros[i].name, pros[i].owner);
@@ -46,10 +50,10 @@ namespace TM
         {
             if (radioButton3.Checked)
             {
-                 admin = new Admin(int.Parse(textBox1.Text), textBox2.Text, textBox3.Text);
-                if (admin.register())
+                 employee = new Employee(int.Parse(textBox1.Text), textBox2.Text, textBox3.Text,"admin");
+                if (employee.register())
                 {
-                    Employee.noOfemp++;
+                    
                     MessageBox.Show("User added successfuly");
                     textBox1.Clear();
                     textBox2.Clear();
@@ -59,10 +63,10 @@ namespace TM
             }
             else if(radioButton4.Checked)
             {
-                 user = new User(int.Parse(textBox1.Text), textBox2.Text, textBox3.Text);
-                if (user.register())
+                 employee = new Employee(int.Parse(textBox1.Text), textBox2.Text, textBox3.Text,"user");
+                if (employee.register())
                 {
-                    Employee.noOfemp++;
+                    
                     MessageBox.Show("User added successfuly");
                     textBox1.Clear();
                     textBox2.Clear();
@@ -75,10 +79,12 @@ namespace TM
         {
             if (radioButton1.Checked)
             {
-                 admin = new Admin();
-                if (admin.login(int.Parse(textBox4.Text), textBox6.Text))
+                 employee = new Employee();
+                if (employee.login(int.Parse(textBox4.Text), textBox6.Text,"admin")!=null)
                 {
+                    employee = employee.login(int.Parse(textBox4.Text), textBox6.Text, "admin");
                     MessageBox.Show("Login successfuly :D");
+                    intro.Visible = true;
                 }
                 else
                 {
@@ -87,18 +93,20 @@ namespace TM
             }
             else if(radioButton2.Checked)
             {
-                 user = new User();
+                 employee = new Employee();
                 
-                if (user.login(int.Parse(textBox4.Text), textBox6.Text))
+                if (employee.login(int.Parse(textBox4.Text), textBox6.Text,"user")!=null)
                 {
+                    employee = employee.login(int.Parse(textBox4.Text), textBox6.Text, "user");
                     MessageBox.Show("Login successfuly :D");
+                    intro.Visible = true;
                 }
                 else
                 {
                     MessageBox.Show("<<<Login Faild>>>");
                 }
             }
-            panel1.Visible = true;
+            
             
         }
 
@@ -110,17 +118,16 @@ namespace TM
         private void button6_Click(object sender, EventArgs e)
         {
             
-           admin.createProject(textBox5.Text, textBox7.Text);
+           employee.createproject(textBox5.Text, textBox7.Text);
             textBox5.Clear();
             textBox7.Clear();
-            nProjectpanel.Visible = false;
+            newProject.Visible = false;
             try
             {
+
                 pros = new List<Project>();
-                FileStream fs = new FileStream("Projects.xml", FileMode.Open);
-                XmlSerializer xs = new XmlSerializer(pros.GetType());
-                pros = (List<Project>)xs.Deserialize(fs);
-                fs.Close();
+                pros = Project.load();
+                dataGridView1.Rows.Clear();
                 for (int i = 0; i < pros.Count; i++)
                 {
                     dataGridView1.Rows.Add(pros[i].name, pros[i].owner);
@@ -137,56 +144,134 @@ namespace TM
         private void button5_Click(object sender, EventArgs e)
         {
            // panel1.Visible = false;
-            nProjectpanel.Visible = true;
+            newProject.Visible = true;
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            int rowi = dataGridView1.CurrentRow.Index;
+            rowi = dataGridView1.CurrentRow.Index;
             label10.Text = pros[rowi].name;
             textBox8.Text = pros[rowi].descri;
-
+            project = new Project();
+            project = pros[rowi];
+            
             //loading employers into the datagridview
-            //XmlDocument doc = new XmlDocument();
-            //doc.Load("Employees.xml");
-            //XmlNodeList list = doc.GetElementsByTagName("user");
-            //XmlNodeList list2 = doc.GetElementsByTagName("admin");
-            //for (int a = 0; a < list.Count; a++)
-            //{
-            //    XmlNodeList child = list[a].ChildNodes;               
-            //    dataGridView2.Rows.Add(child[0].InnerText, child[1].InnerText);     
-            //}
-            //for (int i = 0; i < list2.Count; i++)
-            //{
-            //    XmlNodeList child = list2[i].ChildNodes;
-            //    dataGridView2.Rows.Add(child[0].InnerText, child[1].InnerText);
-            //}
+            for (int i = 0; i < project.emps.Count; i++)
+            {
+                dataGridView2.Rows.Add(project.emps[i].id, project.emps[i].name);
+            }
 
-
-            panel2.Visible = true;
-            panel1.Visible = false;
+            for (int i = 0; i < pros[rowi].tasks.Count; i++)
+            {
+                dataGridView3.Rows.Add(pros[rowi].tasks[i].name, pros[rowi].tasks[i].duration, pros[rowi].tasks[i].emp.name, pros[rowi].tasks[i].comment, pros[rowi].tasks[i].status);
+            }
+            openProject.Visible = true;
+            
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-
+            dataGridView5.Rows.Clear();
+            for (int a = 0; a < employees.Count; a++)
+            {              
+                dataGridView5.Rows.Add(employees[a].id,employees[a].name);
+            }
+            addMembers.Visible = true;
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
-            string name = dataGridView4.CurrentRow.Cells[0].ToString();
-            XmlDocument doc = new XmlDocument();
-            doc.Load("Employees.xml");
-            XmlNodeList list = doc.GetElementsByTagName("user");
-            for (int i = 0; i < list.Count; i++)
+            dataGridView4.Rows.Clear();
+            for (int i = 0; i < pros[rowi].emps.Count; i++)
             {
-                XmlNodeList child = list[i].ChildNodes;
-                if (child[0].InnerText.Equals(name))
+                dataGridView4.Rows.Add(pros[rowi].emps[i].id, pros[rowi].emps[i].name);
+            }
+            newTask.Visible = true;
+            button12.Visible = true;
+            button15.Visible = false;
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            
+            
+            for (int i = 0; i < dataGridView5.Rows.Count; i++)
+            {
+                if (dataGridView5.Rows[i].Cells[2].Value!=null&& dataGridView5.Rows[i].Cells[2].Value.ToString() =="True")
                 {
-                    
+                    project.addemployees(employees[i]);
                 }
             }
-           // admin.createtask()
+            pros = Project.load();
+            dataGridView2.Rows.Clear();
+            for (int i = 0; i < pros[rowi].emps.Count; i++)
+            {
+                dataGridView2.Rows.Add(pros[rowi].emps[i].id, pros[rowi].emps[i].name);
+            }
+            addMembers.Visible = false;
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            task = new Task(textBox9.Text, textBox10.Text, textBox11.Text, employees[dataGridView4.CurrentRow.Index]);
+            project.addtask(task);
+            dataGridView3.Rows.Clear();
+            pros = Project.load();
+            for (int i = 0; i < pros[rowi].tasks.Count; i++)
+            {
+            dataGridView3.Rows.Add(pros[rowi].tasks[i].name, pros[rowi].tasks[i].duration, pros[rowi].tasks[i].emp.name, pros[rowi].tasks[i].comment, pros[rowi].tasks[i].status);
+            }
+            textBox9.Clear();
+            textBox10.Clear();
+            textBox11.Clear();
+            newTask.Visible = false;
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+           employee.closetask( dataGridView3.CurrentRow.Index);
+            pros = Project.load();
+            dataGridView3.Rows.Clear();
+            for (int i = 0; i < pros[rowi].tasks.Count; i++)
+            {
+                dataGridView3.Rows.Add(pros[rowi].tasks[i].name, pros[rowi].tasks[i].duration, pros[rowi].tasks[i].emp.name, pros[rowi].tasks[i].comment, pros[rowi].tasks[i].status);
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            employee.deleteemployee(dataGridView2.CurrentRow.Index);
+            pros = Project.load();
+            project = new Project();
+            project = pros[rowi];
+            //loading employers into the datagridview
+            dataGridView2.Rows.Clear();
+            for (int i = 0; i < project.emps.Count; i++)
+            {
+                dataGridView2.Rows.Add(project.emps[i].id, project.emps[i].name);
+            }
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            newTask.Visible = true;
+            button15.Visible = true;
+            button12.Visible = false;
+            dataGridView5.Rows.Clear();
+            for (int i = 0; i < pros[rowi].emps.Count; i++)
+            {
+                dataGridView4.Rows.Add(pros[rowi].emps[i].id, pros[rowi].emps[i].name);
+            }
+            textBox9.Text = pros[rowi].tasks[dataGridView3.CurrentRow.Index].name;
+            textBox10.Text = pros[rowi].tasks[dataGridView3.CurrentRow.Index].duration;
+            textBox11.Text = pros[rowi].tasks[dataGridView3.CurrentRow.Index].comment;
+            
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            employee.edittask(dataGridView3.CurrentRow.Index, textBox9.Text, textBox10.Text, textBox11.Text, pros[rowi].emps[dataGridView4.CurrentRow.Index]);
+            newTask.Visible = false;
         }
     }
 }
