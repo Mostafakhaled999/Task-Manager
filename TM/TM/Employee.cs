@@ -53,6 +53,7 @@ namespace TM
             {
                 if (!File.Exists("Employees.xml"))
                 {
+                   
                     employees.Add(this);
                     FileStream fs = new FileStream("Employees.xml", FileMode.Append);
                     XmlSerializer xs = new XmlSerializer(employees.GetType());
