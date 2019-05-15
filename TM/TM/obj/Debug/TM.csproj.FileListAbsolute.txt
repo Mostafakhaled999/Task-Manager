@@ -12,3 +12,14 @@ C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.csproj.CopyComplete
 C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.exe
 C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.pdb
 C:\Users\Pharaoh\Documents\Task-Manager\TM\TM\obj\Debug\TM.test.resources
+C:\Users\Sneijder\Documents\GitHub\Task-Manager\TM\TM\bin\Debug\TM.exe.config
+C:\Users\Sneijder\Documents\GitHub\Task-Manager\TM\TM\bin\Debug\TM.exe
+C:\Users\Sneijder\Documents\GitHub\Task-Manager\TM\TM\bin\Debug\TM.pdb
+C:\Users\Sneijder\Documents\GitHub\Task-Manager\TM\TM\bin\Debug\Bunifu.Core.dll
+C:\Users\Sneijder\Documents\GitHub\Task-Manager\TM\TM\obj\Debug\TM.csprojResolveAssemblyReference.cache
+C:\Users\Sneijder\Documents\GitHub\Task-Manager\TM\TM\obj\Debug\TM.Form1.resources
+C:\Users\Sneijder\Documents\GitHub\Task-Manager\TM\TM\obj\Debug\TM.Properties.Resources.resources
+C:\Users\Sneijder\Documents\GitHub\Task-Manager\TM\TM\obj\Debug\TM.test.resources
+C:\Users\Sneijder\Documents\GitHub\Task-Manager\TM\TM\obj\Debug\TM.csproj.GenerateResource.Cache
+C:\Users\Sneijder\Documents\GitHub\Task-Manager\TM\TM\obj\Debug\TM.exe
+C:\Users\Sneijder\Documents\GitHub\Task-Manager\TM\TM\obj\Debug\TM.pdb

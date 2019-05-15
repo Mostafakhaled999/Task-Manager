@@ -29,14 +29,14 @@ namespace TM
             {
                 employees = new List<Employee>();
                 employees = Employee.load();
-                //pros = new List<Project>();
-                //pros = Project.load();
-                //tasks = new List<Task>();
-                //for (int i = 0; i < pros.Count; i++)
-                //{
-                //    dataGridView1.Rows.Add(pros[i].name, pros[i].owner);
+                pros = new List<Project>();
+                pros = Project.load();
+                tasks = new List<Task>();
+                for (int i = 0; i < pros.Count; i++)
+                {
+                    dataGridView1.Rows.Add(pros[i].name, pros[i].owner);
 
-                //}
+                }
             }
             catch (Exception)
             {

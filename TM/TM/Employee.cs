@@ -122,7 +122,7 @@ namespace TM
             FileStream fs = new FileStream("Projects.xml", FileMode.Open);
             XmlSerializer xs = new XmlSerializer(projects.GetType());
             projects = (List<Project>)xs.Deserialize(fs);
-            projects[i].tasks[i].status = "Closed";
+            projects[Form1.rowi].tasks[i].status = "Closed";
             fs.Close();
             fs = new FileStream("Projects.xml", FileMode.Open);
             xs.Serialize(fs, projects);
@@ -150,9 +150,11 @@ namespace TM
             FileStream fs = new FileStream("Projects.xml", FileMode.Open);
             XmlSerializer xs = new XmlSerializer(projects.GetType());
             projects = (List<Project>)xs.Deserialize(fs);
-            projects[Form1.rowi].emps[i]=new Employee();
+            projects[Form1.rowi].emps.RemoveAt(i);
             fs.Close();
-            fs = new FileStream("Projects.xml", FileMode.Open);
+            File.Delete("Projects.xml");
+
+            fs = new FileStream("Projects.xml", FileMode.OpenOrCreate);
             xs.Serialize(fs, projects);
             fs.Close();
         }
