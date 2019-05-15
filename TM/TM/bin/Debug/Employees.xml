@@ -36,4 +36,10 @@
     <password>123</password>
     <type>user</type>
   </Employee>
+  <Employee>
+    <id>2</id>
+    <name>momen</name>
+    <password>123</password>
+    <type>admin</type>
+  </Employee>
 </ArrayOfEmployee>

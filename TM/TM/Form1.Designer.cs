@@ -54,10 +54,12 @@
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.button7 = new System.Windows.Forms.Button();
             this.newTask = new System.Windows.Forms.Panel();
+            this.button15 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -72,9 +74,16 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button14 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button7 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -90,15 +99,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
             this.intro.SuspendLayout();
             this.openProject.SuspendLayout();
             this.addMembers.SuspendLayout();
@@ -155,6 +155,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(241, 20);
             this.textBox3.TabIndex = 4;
+            this.textBox3.UseSystemPasswordChar = true;
             // 
             // label4
             // 
@@ -217,6 +218,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(241, 20);
             this.textBox6.TabIndex = 4;
+            this.textBox6.UseSystemPasswordChar = true;
             // 
             // textBox2
             // 
@@ -284,8 +286,8 @@
             this.intro.Controls.Add(this.button3);
             this.intro.Controls.Add(this.button4);
             this.intro.Controls.Add(this.button5);
-            this.intro.Controls.Add(this.dataGridView1);
             this.intro.Controls.Add(this.newProject);
+            this.intro.Controls.Add(this.dataGridView1);
             this.intro.Location = new System.Drawing.Point(32, 16);
             this.intro.Name = "intro";
             this.intro.Size = new System.Drawing.Size(1127, 566);
@@ -354,15 +356,6 @@
             this.Column11.HeaderText = "Select";
             this.Column11.Name = "Column11";
             // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(35, 438);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(173, 89);
-            this.button7.TabIndex = 4;
-            this.button7.Text = "Back";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
             // newTask
             // 
             this.newTask.Controls.Add(this.button15);
@@ -379,6 +372,17 @@
             this.newTask.Size = new System.Drawing.Size(1159, 582);
             this.newTask.TabIndex = 5;
             this.newTask.Visible = false;
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(739, 504);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(75, 23);
+            this.button15.TabIndex = 4;
+            this.button15.Text = "finish";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Visible = false;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // button12
             // 
@@ -401,6 +405,16 @@
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.Size = new System.Drawing.Size(591, 327);
             this.dataGridView4.TabIndex = 2;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "ID";
+            this.Column12.Name = "Column12";
+            // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "Name";
+            this.Column13.Name = "Column13";
             // 
             // label14
             // 
@@ -529,6 +543,16 @@
             this.tabPage2.Text = "Tasks";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(410, 407);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(75, 23);
+            this.button14.TabIndex = 3;
+            this.button14.Text = "Edit";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
             // button11
             // 
             this.button11.Location = new System.Drawing.Point(491, 409);
@@ -563,6 +587,46 @@
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.Size = new System.Drawing.Size(692, 326);
             this.dataGridView3.TabIndex = 0;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Name";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Duration";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Employer name";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Comment";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 300;
+            // 
+            // Column14
+            // 
+            this.Column14.HeaderText = "status";
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(35, 438);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(173, 89);
+            this.button7.TabIndex = 4;
+            this.button7.Text = "Back";
+            this.button7.UseVisualStyleBackColor = true;
             // 
             // label11
             // 
@@ -697,68 +761,6 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(205, 20);
             this.textBox5.TabIndex = 0;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "ID";
-            this.Column12.Name = "Column12";
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "Name";
-            this.Column13.Name = "Column13";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Name";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Duration";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Employer name";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Comment";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 300;
-            // 
-            // Column14
-            // 
-            this.Column14.HeaderText = "status";
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
-            // 
-            // button14
-            // 
-            this.button14.Location = new System.Drawing.Point(410, 407);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 23);
-            this.button14.TabIndex = 3;
-            this.button14.Text = "Edit";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
-            // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(739, 504);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(75, 23);
-            this.button15.TabIndex = 4;
-            this.button15.Text = "finish";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Visible = false;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // Form1
             // 

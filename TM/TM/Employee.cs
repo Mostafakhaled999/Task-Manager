@@ -31,6 +31,7 @@ namespace TM
         public Employee login(int i, string p, string t)
         {
             List<Employee> employees = new List<Employee>();
+   //         Employee em = new Employee();
             employees = load();
             for (int a = 0; a < employees.Count; a++)
             {
