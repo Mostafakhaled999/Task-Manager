@@ -10,9 +10,12 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 using System.Xml;
 using System.IO;
+<<<<<<< HEAD
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
+=======
+>>>>>>> parent of 092e090... almost
 namespace TM
 {
      
@@ -402,15 +405,6 @@ namespace TM
                 MessageBox.Show("failed");
             }
            
-        }
-
-        private void button19_Click(object sender, EventArgs e)
-        {
-            ReportDocument cryrpt = new ReportDocument();
-            cryrpt.Load("C:\\Users\\Sneijder\\Documents\\GitHub\\Task-Manager\\TM\\TM\\CrystalReport1.rpt");
-            
-            
-
         }
     }
 }
