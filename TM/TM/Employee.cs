@@ -31,7 +31,7 @@ namespace TM
         public Employee login(int i, string p, string t)
         {
             List<Employee> employees = new List<Employee>();
-   //         Employee em = new Employee();
+            //         Employee em = new Employee();
             employees = load();
             for (int a = 0; a < employees.Count; a++)
             {
@@ -53,7 +53,7 @@ namespace TM
             {
                 if (!File.Exists("Employees.xml"))
                 {
-                   
+
                     employees.Add(this);
                     FileStream fs = new FileStream("Employees.xml", FileMode.Append);
                     XmlSerializer xs = new XmlSerializer(employees.GetType());
@@ -136,7 +136,7 @@ namespace TM
             List<Project> projects = new List<Project>();
             FileStream fs = new FileStream("Projects.xml", FileMode.Open);
             XmlSerializer xs = new XmlSerializer(projects.GetType());
-            projects = (List<Project>)xs.Deserialize(fs);            
+            projects = (List<Project>)xs.Deserialize(fs);
             projects.RemoveAt(i);
             fs.Close();
             File.Delete("Projects.xml");
@@ -160,13 +160,13 @@ namespace TM
             xs.Serialize(fs, projects);
             fs.Close();
         }
-        public void edittask(int i,string n,string d,string c,Employee employee)
+        public void edittask(int i, string n, string d, string c, Employee employee)
         {
             List<Project> projects = new List<Project>();
             FileStream fs = new FileStream("Projects.xml", FileMode.Open);
             XmlSerializer xs = new XmlSerializer(projects.GetType());
             projects = (List<Project>)xs.Deserialize(fs);
-            projects[Form1.rowi].tasks[i].name=n;
+            projects[Form1.rowi].tasks[i].name = n;
             projects[Form1.rowi].tasks[i].duration = d;
             projects[Form1.rowi].tasks[i].comment = c;
             projects[Form1.rowi].tasks[i].emp = employee;
@@ -174,6 +174,64 @@ namespace TM
             fs = new FileStream("Projects.xml", FileMode.Open);
             xs.Serialize(fs, projects);
             fs.Close();
+        }
+      public void forward(int i,Employee employee)
+        {
+            List<Project> projects = new List<Project>();
+            FileStream fs = new FileStream("Projects.xml", FileMode.Open);
+            XmlSerializer xs = new XmlSerializer(projects.GetType());
+            projects = (List<Project>)xs.Deserialize(fs);
+            projects[Form1.rowi].tasks[i].emp = employee;
+            fs.Close();
+            fs = new FileStream("Projects.xml", FileMode.Open);
+            xs.Serialize(fs, projects);
+            fs.Close();
+        }
+        public bool upload(int i,string n,string f,List<Employee> employees)
+        {
+            try
+            {
+                Attachment attachment = new Attachment(n, f, employees);
+                List<Project> projects = new List<Project>();
+                FileStream fs = new FileStream("Projects.xml", FileMode.Open);
+                XmlSerializer xs = new XmlSerializer(projects.GetType());
+                projects = (List<Project>)xs.Deserialize(fs);
+                projects[Form1.rowi].tasks[i].attachment = attachment;
+                fs.Close();
+                fs = new FileStream("Projects.xml", FileMode.Open);
+                xs.Serialize(fs, projects);
+                fs.Close();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+          
+        }
+        public bool download(int i)
+        {
+            try
+            {
+                
+                List<Project> projects = new List<Project>();
+                FileStream fs = new FileStream("Projects.xml", FileMode.Open);
+                XmlSerializer xs = new XmlSerializer(projects.GetType());
+                projects = (List<Project>)xs.Deserialize(fs);
+                projects[Form1.rowi].tasks[i].attachment.employees.Add(this);
+                fs.Close();
+                fs = new FileStream("Projects.xml", FileMode.Open);
+                xs.Serialize(fs, projects);
+                fs.Close();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
         }
     }
  //   [Serializable]

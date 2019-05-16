@@ -81,12 +81,14 @@ namespace TM
         public string duration;
         public Employee emp;
         public string status;
+        public Attachment attachment;
         public Task()
         {
             name = null;
             comment = null;
             duration = null;
             status = "Open";
+            attachment = new Attachment();
         }
         public Task(string n,string c,string d,Employee employee)
         {
@@ -95,7 +97,23 @@ namespace TM
             duration = d;
             status = "Open";
             emp = employee;
+            attachment = new Attachment();
         }
         
+    }
+ public class Attachment
+    {
+        public string name,filepath;
+      public  List<Employee> employees;
+        public Attachment(string n,string f,List<Employee>employees)
+        {
+            name = n;
+            filepath = f;
+            this.employees = employees;
+        }
+        public Attachment()
+        {
+
+        }
     }
 }

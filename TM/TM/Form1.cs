@@ -18,10 +18,14 @@ namespace TM
         Employee employee;
         List<Employee> employees;
         List<Project> pros;
+        List<Project> pros2;
         Project project;
+        Project project2;
         Task task;
-        List<Task> tasks ;
+        List<Task> tasks;
+        bool user;
        public static int rowi;
+        public static int rowi2;
         public Form1()
         {
             InitializeComponent();
@@ -30,13 +34,9 @@ namespace TM
                 employees = new List<Employee>();
                 employees = Employee.load();
                 pros = new List<Project>();
-                pros = Project.load();
+             //   pros = Project.load();
                 tasks = new List<Task>();
-                for (int i = 0; i < pros.Count; i++)
-                {
-                    dataGridView1.Rows.Add(pros[i].name, pros[i].owner);
-
-                }
+                
             }
             catch (Exception)
             {
@@ -85,6 +85,12 @@ namespace TM
                     employee = employee.login(int.Parse(textBox4.Text), textBox6.Text, "admin");
                     MessageBox.Show("Login successfuly :D");
                     intro.Visible = true;
+                    dataGridView1.Rows.Clear();
+                    for (int i = 0; i < pros.Count; i++)
+                    {
+                        dataGridView1.Rows.Add(pros[i].name, pros[i].owner);
+
+                    }
                 }
                 else
                 {
@@ -94,12 +100,27 @@ namespace TM
             else if(radioButton2.Checked)
             {
                  employee = new Employee();
-                
+                 user = true;
+                pros2 = new List<Project>();
                 if (employee.login(int.Parse(textBox4.Text), textBox6.Text,"user")!=null)
                 {
                     employee = employee.login(int.Parse(textBox4.Text), textBox6.Text, "user");
                     MessageBox.Show("Login successfuly :D");
                     intro.Visible = true;
+
+                    dataGridView1.Rows.Clear();
+                    for (int i = 0; i < pros.Count; i++)
+                    {
+                        dataGridView1.Rows.Add(pros[i].name, pros[i].owner);
+
+                    }
+                    button3.Visible = false;
+                    button5.Visible = false;
+                    button8.Visible = false;
+                    button9.Visible = false;
+                    button10.Visible = false;
+                    button11.Visible = false;
+                    button14.Visible = false;
                 }
                 else
                 {
@@ -149,24 +170,64 @@ namespace TM
 
         private void button4_Click(object sender, EventArgs e)
         {
-            rowi = dataGridView1.CurrentRow.Index;
-            label10.Text = pros[rowi].name;
-            textBox8.Text = pros[rowi].descri;
-            project = new Project();
-            project = pros[rowi];
-            
-            //loading employers into the datagridview
-            for (int i = 0; i < project.emps.Count; i++)
-            {
-                dataGridView2.Rows.Add(project.emps[i].id, project.emps[i].name);
-            }
 
-            for (int i = 0; i < pros[rowi].tasks.Count; i++)
-            {
-                dataGridView3.Rows.Add(pros[rowi].tasks[i].name, pros[rowi].tasks[i].duration, pros[rowi].tasks[i].emp.name, pros[rowi].tasks[i].comment, pros[rowi].tasks[i].status);
+            bool found=false;
+                rowi = dataGridView1.CurrentRow.Index;
+                label10.Text = pros[rowi].name;
+                textBox8.Text = pros[rowi].descri;
+                project = new Project();
+                project = pros[rowi];
+                if (user)
+                {
+                    for (int i = 0; i < pros[rowi].emps.Count; i++)
+                    {
+                        if (pros[rowi].emps[i].name.Equals(employee.name))
+                        {
+                        found = true;
+                        break;
+                        }
+                    }
+                if (found)
+                {
+                    dataGridView2.Rows.Clear();
+                    dataGridView3.Rows.Clear();
+                    for (int a = 0; a < project.emps.Count; a++)
+                    {
+                        dataGridView2.Rows.Add(project.emps[a].id, project.emps[a].name);
+                    }
+
+                    for (int b = 0; b < pros[rowi].tasks.Count; b++)
+                    {
+                        dataGridView3.Rows.Add(pros[rowi].tasks[b].name, pros[rowi].tasks[b].duration, pros[rowi].tasks[b].emp.name, pros[rowi].tasks[b].comment, pros[rowi].tasks[b].status);
+                    }
+                    openProject.Visible = true;
+
+                }
+                else
+                {
+                    MessageBox.Show("you are not in that project");
+                }
+
             }
-            openProject.Visible = true;
+            //loading employers into the datagridview
+            else
+            {
+                dataGridView2.Rows.Clear();
+                dataGridView3.Rows.Clear();
+                for (int i = 0; i < project.emps.Count; i++)
+                {
+                    dataGridView2.Rows.Add(project.emps[i].id, project.emps[i].name);
+                }
+
+                for (int i = 0; i < pros[rowi].tasks.Count; i++)
+                {
+                    dataGridView3.Rows.Add(pros[rowi].tasks[i].name, pros[rowi].tasks[i].duration, pros[rowi].tasks[i].emp.name, pros[rowi].tasks[i].comment, pros[rowi].tasks[i].status);
+                }
+                openProject.Visible = true;
+
+            }
             
+
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -194,7 +255,7 @@ namespace TM
         private void button13_Click(object sender, EventArgs e)
         {
             
-            
+           
             for (int i = 0; i < dataGridView5.Rows.Count; i++)
             {
                 if (dataGridView5.Rows[i].Cells[2].Value!=null&& dataGridView5.Rows[i].Cells[2].Value.ToString() =="True")
@@ -213,7 +274,7 @@ namespace TM
 
         private void button12_Click(object sender, EventArgs e)
         {
-            task = new Task(textBox9.Text, textBox10.Text, textBox11.Text, employees[dataGridView4.CurrentRow.Index]);
+            task = new Task(textBox9.Text, textBox11.Text, textBox10.Text, pros[rowi].emps[dataGridView4.CurrentRow.Index]);
             project.addtask(task);
             dataGridView3.Rows.Clear();
             pros = Project.load();
@@ -270,7 +331,7 @@ namespace TM
 
         private void button15_Click(object sender, EventArgs e)
         {
-            employee.edittask(dataGridView3.CurrentRow.Index, textBox9.Text, textBox10.Text, textBox11.Text, pros[rowi].emps[dataGridView4.CurrentRow.Index]);
+            employee.edittask(dataGridView3.CurrentRow.Index, textBox9.Text, textBox11.Text, textBox10.Text, pros[rowi].emps[dataGridView4.CurrentRow.Index]);
             newTask.Visible = false;
         }
 
@@ -283,6 +344,61 @@ namespace TM
             {
                 dataGridView1.Rows.Add(pros[i].name, pros[i].owner);
             }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            openProject.Visible = false;
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            if (pros[rowi].tasks[dataGridView3.CurrentRow.Index].emp.name.Equals(employee.name))
+            {
+                employee.forward(dataGridView3.CurrentRow.Index, pros[rowi].emps[dataGridView2.CurrentRow.Index]);
+                pros = Project.load();
+                dataGridView3.Rows.Clear();
+                for (int i = 0; i < pros[rowi].tasks.Count; i++)
+                {
+                    dataGridView3.Rows.Add(pros[rowi].tasks[i].name, pros[rowi].tasks[i].duration, pros[rowi].tasks[i].emp.name, pros[rowi].tasks[i].comment, pros[rowi].tasks[i].status);
+                }
+            }
+            else
+            {
+                MessageBox.Show("you can't forward this task");
+            }
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            List<Employee> emps = new List<Employee>();
+            
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                emps.Add(employee);
+                if (employee.upload(dataGridView3.CurrentRow.Index, ofd.SafeFileName, ofd.FileName, emps))
+                {
+                    MessageBox.Show("success");
+                }
+                else
+                {
+                    MessageBox.Show("failed");
+                }
+            }
+        }
+
+            private void button18_Click(object sender, EventArgs e)
+        {
+            if (employee.download(dataGridView3.CurrentRow.Index))
+            {
+                MessageBox.Show("success");
+            }
+            else
+            {
+                MessageBox.Show("failed");
+            }
+           
         }
     }
 }
