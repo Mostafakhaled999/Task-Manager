@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 using System.Xml;
 using System.IO;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 namespace TM
 {
      
@@ -399,6 +401,15 @@ namespace TM
                 MessageBox.Show("failed");
             }
            
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            ReportDocument cryrpt = new ReportDocument();
+            cryrpt.Load("C:\\Users\\Sneijder\\Documents\\GitHub\\Task-Manager\\TM\\TM\\CrystalReport1.rpt");
+            
+            
+
         }
     }
 }
